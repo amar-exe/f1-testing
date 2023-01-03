@@ -1,12 +1,21 @@
 package ba.edu.ibu;
 
 public class Constants {
-    public static String errorColor = "#ee0000";
-    public static String notErrorColor = "#67676d";
-
+    final public static String errorColor = "#ee0000";
+    final public static String notErrorColor = "#67676d";
+    final public static int nrOfF1Teams = 10;
     final public static String testAccountEmail = "f1@inboxkitten.com";
     final public static String testAccountPass = "Test123!";
-
+    final public static String[] redNavigationTitles = {
+            "Latest News",
+            "Video",
+            "F1 Schedule 2022 - Official Calendar of Grand Prix Races",
+            "2022 RACE RESULTS",
+            "F1 Drivers 2023 - Verstappen, Hamilton, Leclerc and more",
+            "F1 Racing Teams 2023 - Ferrari, Mercedes, Red Bull and more",
+            "F1 Games - Experience F1 Fantasy and Other Video Games",
+            "Live Timing"
+    };
     final public static String[] whiteNavigationUrls = {
             //Solo
             "https://www.fia.com/",

@@ -59,11 +59,7 @@ public class RegisterRegexTest {
     private void goToRegisterScreen() {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
-        WebElement acceptCookies = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"truste-consent-button\"]"))
-
-        );
-        acceptCookies.click();
+        CommonMethods.acceptMarketingCookies(webDriver);
 
         WebElement goToSignIn = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"globalNav\"]/div/div[2]/div[1]/div/a[1]"))

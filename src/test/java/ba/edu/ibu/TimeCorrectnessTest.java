@@ -38,7 +38,7 @@ public class TimeCorrectnessTest {
     void runTimeCorectnessTest(){
         webDriver.get(Config.baseUrl);
 
-        acceptMarketingCookies();
+        CommonMethods.acceptMarketingCookies(webDriver);
         goToRaceSchedule();
         checkSakhirTime();
         checkLocalTime();
@@ -74,13 +74,5 @@ public class TimeCorrectnessTest {
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("window.scrollTo(0,3500)");
     }
-    private void acceptMarketingCookies(){
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-
-        WebElement acceptCookies = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"truste-consent-button\"]"))
-
-        );
-        acceptCookies.click();
-    }
+   
 }

@@ -58,12 +58,7 @@ public class LoginTest {
     private void goToLoginScreen() {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
-        WebElement acceptCookies = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"truste-consent-button\"]"))
-
-        );
-        acceptCookies.click();
+        CommonMethods.acceptMarketingCookies(webDriver);
 
         WebElement goToSignIn = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(

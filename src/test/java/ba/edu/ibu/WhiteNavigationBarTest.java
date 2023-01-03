@@ -8,10 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -37,7 +33,7 @@ public class WhiteNavigationBarTest {
 
         webDriver.get(Config.baseUrl);
 
-        acceptMarketingCookies();
+        CommonMethods.acceptMarketingCookies(webDriver);
 
         checkFiaLink();
         checkFormulaLeaguesLinks();
@@ -47,11 +43,11 @@ public class WhiteNavigationBarTest {
 
     public void checkStoresLinks() {
         //Stores and shops
-        for(int i = 2; i < 7; i++) {
+        for(int elementNr = 2; elementNr < 7; elementNr++) {
             WebElement webElement = webDriver
                     .findElement(By
                             .xpath("//*[@id=\"globalNav\"]/div/div[2]/div[2]/ul/li["
-                            + i +
+                            + elementNr +
                             "]/a"));
             String webElementLink = webElement.getAttribute("href");
             assertEquals(Constants.whiteNavigationUrls[linkParser], webElementLink);
@@ -73,10 +69,10 @@ public class WhiteNavigationBarTest {
     public void checkFormulaLeaguesLinks() {
         // F1 F2 F3
         //TODO F2 and F3 websites is https secure but the transfer link is http
-        for(int i = 1; i < 4; i++) {
+        for(int elementNr = 1; elementNr < 4; elementNr++) {
             WebElement webElement = webDriver
                     .findElement(By
-                            .xpath("//*[@id=\"globalNav\"]/div/div[3]/ul/li[" + i + "]/a"));
+                            .xpath("//*[@id=\"globalNav\"]/div/div[3]/ul/li[" + elementNr + "]/a"));
 
             String webElementLink = webElement.getAttribute("href");
             assertEquals(Constants.whiteNavigationUrls[linkParser], webElementLink);
@@ -85,13 +81,5 @@ public class WhiteNavigationBarTest {
     }
 
 
-    private void acceptMarketingCookies(){
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-
-        WebElement acceptCookies = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"truste-consent-button\"]"))
-
-        );
-        acceptCookies.click();
-    }
+   
 }
