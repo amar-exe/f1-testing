@@ -12,6 +12,7 @@ public class ApiGetter {
 
 
     public static DriverModel getDrivers2022() {
+        System.out.println("Getting drivers information and stats...");
         DriverModel driverModel = null;
         try {
             URL url = new URL("http://ergast.com/api/f1/2022/driverStandings.json");
@@ -23,9 +24,6 @@ public class ApiGetter {
             DataOutputStream out = new DataOutputStream(con.getOutputStream());
             out.flush();
             out.close();
-
-            int responseCode = con.getResponseCode();
-            System.out.println("Response code: " + responseCode);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
