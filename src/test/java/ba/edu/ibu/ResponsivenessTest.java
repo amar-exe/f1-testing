@@ -25,6 +25,8 @@ public class ResponsivenessTest {
         System.setProperty("webdriver.chrome.driver", Config.path+"chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
+        options.addArguments("--headless");
+        options.addArguments("--hide-scrollbars");
         webDriver = new ChromeDriver(options);
     }
 
@@ -34,17 +36,38 @@ public class ResponsivenessTest {
     }
 
     @Test
-    void runResponsivenessTest(){
+    void runResponsivenessTest() throws InterruptedException {
         webDriver.get(Config.baseUrl);
-        Dimension dimension = new Dimension(414, 896);
+
+        acceptMarketingCookies();
+        //low definition tests
+        resizeAndTakeSS(new Dimension(360, 640),"mobile_ld");
+        resizeAndTakeSS(new Dimension(601, 962),"tablet_ld");
+        resizeAndTakeSS(new Dimension(1024, 768),"desktop_ld");
+        //high definition tests
+        resizeAndTakeSS(new Dimension(414, 896),"mobile_hd");
+        resizeAndTakeSS(new Dimension(1280, 800),"tablet_hd");
+        resizeAndTakeSS(new Dimension(1920, 1080),"desktop_hd");
+    }
+
+    private void resizeAndTakeSS(Dimension dimension, String deviceName){
         webDriver.manage().window().setSize(dimension);
         File screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
         try {
-            System.out.println("usoooooooooooooooo");
             BufferedImage bImage = ImageIO.read(screenshot);
-            ImageIO.write(bImage, "jpg", new File(Config.path+"f1-testing\\export\\test.jpg"));
+            File outputFile = new File(Config.path+"f1-testing\\export\\"+deviceName+".png");
+            ImageIO.write(bImage, "png", outputFile);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+    private void acceptMarketingCookies(){
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+
+        WebElement acceptCookies = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"truste-consent-button\"]"))
+
+        );
+        acceptCookies.click();
     }
 }
