@@ -15,8 +15,6 @@ public class SuccessfullyRegisteredTest {
         System.setProperty("webdriver.chrome.driver", Config.path+"chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
-        options.addArguments("--headless");
-        options.addArguments("--hide-scrollbars");
         webDriver = new ChromeDriver(options);
     }
 
@@ -26,8 +24,15 @@ public class SuccessfullyRegisteredTest {
     }
 
     @Test
-    public void successfullyRegisterTest() {
+    public void successfullyRegisterTest() throws InterruptedException {
         webDriver.get(Config.baseUrl);
-        
+
+        CommonMethods.acceptMarketingCookies(webDriver);
+
+        CommonMethods.goToRegisterScreen(webDriver);
+
+        CommonMethods.testAccountCreation(webDriver);
     }
+
+
 }
