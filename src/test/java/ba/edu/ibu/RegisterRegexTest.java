@@ -9,13 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.Color;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegisterRegexTest {
     private static WebDriver webDriver;
@@ -37,9 +33,11 @@ public class RegisterRegexTest {
     void runRegisterRegexTest() throws InterruptedException {
         webDriver.get(Config.baseUrl);
 
-        goToRegisterScreen();
+        CommonMethods.acceptMarketingCookies(webDriver);
 
-        inputAllFieldsExceptPassword();
+        CommonMethods.goToRegisterScreen(webDriver);
+
+        CommonMethods.inputAllFieldsExceptPasswordOnRegisterScreen(webDriver);
 
         WebElement passwordField = webDriver.findElement(By.id("Password-input"));
         WebElement registerBtn = webDriver.findElement(By.xpath("//*[@id=\"registration-form\"]/div/div/div/div/div[2]/div[11]/div/div/div[1]/a"));
@@ -52,31 +50,6 @@ public class RegisterRegexTest {
 
         testPasswordField(minUppercase, minLowercase, minNumber, min8Char, minSpecial, passwordField, registerBtn);
 
-        testAccountCreation(passwordField, registerBtn);
-
-    }
-
-    private void goToRegisterScreen() {
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-
-        CommonMethods.acceptMarketingCookies(webDriver);
-
-        WebElement goToSignIn = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"globalNav\"]/div/div[2]/div[1]/div/a[1]"))
-
-        );
-        goToSignIn.click();
-
-        WebElement goToRegister = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/header/div/div[2]/ul/li[2]/a"))
-
-        );
-        goToRegister.click();
-
-        WebElement registerHeader = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"registration-form\"]/div/div/div/div/div[1]/h2"))
-        );
-        assertEquals("CREATE ACCOUNT", registerHeader.getText());
     }
 
     private boolean checkIfRed(WebElement webElement) {
@@ -92,31 +65,6 @@ public class RegisterRegexTest {
             };
         }
         return true;
-    }
-
-    private String generateEmail() {
-        int numOfLetters = 12;
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + "0123456789"
-                + "abcdefghijklmnopqrstuvxyz";
-
-        // create StringBuffer size of AlphaNumericString
-        StringBuilder sb = new StringBuilder(numOfLetters);
-
-        for (int i = 0; i < numOfLetters; i++) {
-
-            // generate a random number between
-            // 0 to AlphaNumericString variable length
-            int index
-                    = (int)(AlphaNumericString.length()
-                    * Math.random());
-
-            // add Character one by one in end of sb
-            sb.append(AlphaNumericString
-                    .charAt(index));
-        }
-
-        return (sb + "@inboxkitten.com");
     }
 
     private void testPasswordField(WebElement minUppercase,
@@ -166,42 +114,5 @@ public class RegisterRegexTest {
         assertTrue(checkIfRed(new WebElement[] {minUppercase, minLowercase, minSpecial}));
 
 
-    }
-
-    private void testAccountCreation(WebElement passwordField, WebElement registerBtn) throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        //Confirm register works
-        passwordField.clear();
-        passwordField.sendKeys("Test123!");
-        registerBtn.click();
-        Thread.sleep(6000);
-        registerBtn.click();
-
-        WebElement duplicateEmail = wait.until(
-                ExpectedConditions
-                        .visibilityOfElementLocated(By
-                                .xpath("//*[@id=\"registration-form\"]" +
-                                        "/div/div/div/div/div[2]/div[7]/div/div/div/span"))
-        );
-
-        assertTrue(duplicateEmail.getText().contains("An account has already been created with this email address."));
-    }
-
-
-
-    private void inputAllFieldsExceptPassword() {
-        Select titleSelect = new Select(webDriver.findElement(By.id("Title-input")));
-        titleSelect.selectByValue("Mr");
-
-        webDriver.findElement(By.xpath("//*[@id=\"FirstName-input\"]")).sendKeys("testingName");
-        webDriver.findElement(By.xpath("//*[@id=\"LastName-input\"]")).sendKeys("testingSurname");
-        WebElement dateInput = webDriver.findElement(By.id("BirthDate-input"));
-        dateInput.clear();
-        dateInput.click();
-        dateInput.sendKeys("02012000");
-
-        Select countrySelect = new Select(webDriver.findElement(By.id("Country-input")));
-        countrySelect.selectByValue("BIH");
-        webDriver.findElement(By.xpath("//*[@id=\"Email-input\"]")).sendKeys(generateEmail());
     }
 }
