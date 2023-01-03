@@ -7,6 +7,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.ZonedDateTime;
 
 public class ApiGetter {
 
@@ -42,4 +43,28 @@ public class ApiGetter {
         }
         return driverModel;
     }
+
+    public static String getCurrentTimeInSakhir(){
+        System.out.println("Getting current time in Sakhir...");
+        String currentTime ="";
+        try {
+            URL timeApiUrl = new URL("http://worldtimeapi.org/api/timezone/Asia/Bahrain");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(timeApiUrl.openStream()));
+            String apiResponse = in.readLine();
+            in.close();
+            Gson gson = new Gson();
+            TimeZoneModel timezoneInfo = gson.fromJson(apiResponse, TimeZoneModel.class);
+            currentTime=timezoneInfo.datetime;
+            ZonedDateTime zonedDateTime = ZonedDateTime.parse(currentTime);
+            int hours = zonedDateTime.getHour();
+            int minutes = zonedDateTime.getMinute();
+            currentTime=String.format("%02d", hours)+":"+String.format("%02d", minutes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return currentTime;
+
+    }
+
 }
