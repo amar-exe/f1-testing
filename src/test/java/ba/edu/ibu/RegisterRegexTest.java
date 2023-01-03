@@ -19,16 +19,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RegisterRegexTest {
     private static WebDriver webDriver;
-    private static String baseUrl;
 
     @BeforeAll
     static void setUp() {
-        System.setProperty("webdriver.chrome.driver",
-                Config.path);
+        System.setProperty("webdriver.chrome.driver", Config.path+"chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         webDriver = new ChromeDriver(options);
-        baseUrl = "https://formula1.com/";
     }
 
     @AfterAll
@@ -37,8 +34,8 @@ public class RegisterRegexTest {
     }
 
     @Test
-    void task1() throws InterruptedException {
-        webDriver.get(baseUrl);
+    void runRegisterRegexTest() throws InterruptedException {
+        webDriver.get(Config.baseUrl);
 
         goToRegisterScreen();
 
@@ -89,9 +86,6 @@ public class RegisterRegexTest {
     private boolean checkIfRed(WebElement webElement) {
         String currentColorMinLowercase = webElement.getCssValue("color");
         String color = Color.fromString(currentColorMinLowercase).asHex();
-        System.out.println(currentColorMinLowercase);
-        System.out.println("color");
-        System.out.println(color);
         return color.equals(Constants.errorColor);
     }
 
