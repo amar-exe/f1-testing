@@ -35,7 +35,7 @@ public class DriverStatsTest {
     @Test
     public void testDriverStandings() throws InterruptedException {
         webDriver.get(Config.baseUrl);
-        acceptMarketingCookies();
+        CommonMethods.acceptMarketingCookies(webDriver);
         goToViewStandingsButton();
         checkDriverStats();
     }

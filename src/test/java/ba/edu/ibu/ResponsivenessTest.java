@@ -37,7 +37,7 @@ public class ResponsivenessTest {
     void runResponsivenessTest() throws InterruptedException {
         webDriver.get(Config.baseUrl);
 
-        acceptMarketingCookies();
+        CommonMethods.acceptMarketingCookies(webDriver);
         //low definition tests
         resizeAndTakeSS(new Dimension(360, 640),"mobile_ld");
         resizeAndTakeSS(new Dimension(601, 962),"tablet_ld");
