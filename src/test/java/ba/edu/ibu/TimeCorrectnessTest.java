@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TimeCorectnessTest {
+public class TimeCorrectnessTest {
     private static WebDriver webDriver;
 
     @BeforeAll
