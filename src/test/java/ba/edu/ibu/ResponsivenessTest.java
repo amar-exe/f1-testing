@@ -1,21 +1,19 @@
 package ba.edu.ibu;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import javax.imageio.ImageIO;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ResponsivenessTest {
     private static WebDriver webDriver;
@@ -66,7 +64,6 @@ public class ResponsivenessTest {
 
         WebElement acceptCookies = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"truste-consent-button\"]"))
-
         );
         acceptCookies.click();
     }
