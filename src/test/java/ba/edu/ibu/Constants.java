@@ -17,12 +17,8 @@ public class Constants {
             //Together
             "https://www.f1authentics.com/",
             "https://f1store.formula1.com/en/?_s=bm-fi-f1-prtsite-topnav-230720-jm",
-            "https://tickets.formula1.com/en",
+            "https://tickets.formula1.com/",
             "https://tickets.formula1.com/en/h-formula1-hospitality",
             "https://f1experiences.com/?utm_source=formula1.com&utm_medium=referral&utm_campaign=general",
-            "https://f1tv.formula1.com/",
-            //Subscribe solo
-            "https://www.formula1.com/en/subscribe-to-f1-tv.html#en-BA",
-            //Sign in solo
-            "https://account.formula1.com/#/en/login?redirect=https%3A%2F%2Fwww.formula1.com%2Fen.html&lead_source=web_f1core"};
+            "https://f1tv.formula1.com/"};
 }

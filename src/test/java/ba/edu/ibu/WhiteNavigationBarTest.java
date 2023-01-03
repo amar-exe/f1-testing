@@ -37,60 +37,51 @@ public class WhiteNavigationBarTest {
 
         webDriver.get(Config.baseUrl);
 
-        String originalTabHandle = webDriver.getWindowHandle();
-
         acceptMarketingCookies();
 
+        checkFiaLink();
+        checkFormulaLeaguesLinks();
+        checkStoresLinks();
 
+    }
+
+    public void checkStoresLinks() {
+        //Stores and shops
+        for(int i = 2; i < 7; i++) {
+            WebElement webElement = webDriver
+                    .findElement(By
+                            .xpath("//*[@id=\"globalNav\"]/div/div[2]/div[2]/ul/li["
+                            + i +
+                            "]/a"));
+            String webElementLink = webElement.getAttribute("href");
+            assertEquals(Constants.whiteNavigationUrls[linkParser], webElementLink);
+            linkParser++;
+        }
+    }
+
+    public void checkFiaLink() {
         //FIA
         WebElement fiaWebsite = webDriver
                 .findElement(By
                         .xpath("//*[@id=\"globalNav\"]/div/div[1]/a"));
 
-        fiaWebsite.click();
-        checkUrl(originalTabHandle);
+        String fiaLink = fiaWebsite.getAttribute("href");
+        assertEquals(Constants.whiteNavigationUrls[linkParser], fiaLink);
+        linkParser++;
+    }
 
-
+    public void checkFormulaLeaguesLinks() {
         // F1 F2 F3
+        //TODO F2 and F3 websites is https secure but the transfer link is http
         for(int i = 1; i < 4; i++) {
             WebElement webElement = webDriver
                     .findElement(By
                             .xpath("//*[@id=\"globalNav\"]/div/div[3]/ul/li[" + i + "]/a"));
 
-            webElement.click();
-            moveSeleniumToOriginalTab(originalTabHandle);
-
-            checkUrl(originalTabHandle);
+            String webElementLink = webElement.getAttribute("href");
+            assertEquals(Constants.whiteNavigationUrls[linkParser], webElementLink);
+            linkParser++;
         }
-    }
-
-    private void checkUrl(String originalTabHandle) throws InterruptedException {
-        moveSeleniumToNewTab(originalTabHandle);
-        assertEquals(Constants.whiteNavigationUrls[linkParser], webDriver.getCurrentUrl());
-        linkParser++;
-        webDriver.close();
-        Thread.sleep(2000);
-        moveSeleniumToOriginalTab(originalTabHandle);
-        Thread.sleep(2000);
-
-
-    }
-
-    public static void moveSeleniumToNewTab(String originalTabHandle) {
-
-        for (String handle: webDriver.getWindowHandles()) {
-            if(!handle.equals(originalTabHandle)) {
-                webDriver.switchTo().window(handle);
-                System.out.println("handle:" + handle);
-                System.out.println("website from selenium move: " + webDriver.getCurrentUrl());
-                break;
-            }
-        }
-    }
-
-    public static void moveSeleniumToOriginalTab(String originalTabHandle) {
-        webDriver.switchTo().window(originalTabHandle);
-        System.out.println(webDriver.getCurrentUrl());
     }
 
 
