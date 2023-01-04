@@ -33,9 +33,8 @@ public class TeamsCountTest {
 
         CommonMethods.acceptMarketingCookies(webDriver);
         navigateToTeamsPage();
-        int nrOfTeams=findNumberOfTeams();
 
-        assertEquals(findNumberOfTeams(),Constants.nrOfF1Teams);
+        assertEquals(Constants.nrOfF1Teams,findNumberOfTeams());
 
     }
 

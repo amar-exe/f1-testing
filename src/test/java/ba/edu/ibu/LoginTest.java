@@ -21,7 +21,7 @@ public class LoginTest {
     @BeforeAll
     static void setUp() {
         System.setProperty("webdriver.chrome.driver",
-                Config.path);
+                Config.path+"chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         webDriver = new ChromeDriver(options);

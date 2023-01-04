@@ -34,7 +34,7 @@ public class VerifyAccountTest {
     }
 
     @Test
-    public void verifyAccountTest() throws InterruptedException {
+    void runVerifyAccountTest() throws InterruptedException {
         webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);

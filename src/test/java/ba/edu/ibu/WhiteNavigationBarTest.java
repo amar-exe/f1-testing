@@ -29,7 +29,7 @@ public class WhiteNavigationBarTest {
     }
 
     @Test
-    public void testWhiteNavigationBar() throws InterruptedException {
+    void runWhiteNavigationBarTest() throws InterruptedException {
 
         webDriver.get(Constants.baseUrl);
 

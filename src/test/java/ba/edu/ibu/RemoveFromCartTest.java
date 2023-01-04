@@ -30,7 +30,7 @@ public class RemoveFromCartTest {
     static void tearDown() {webDriver.quit();}
 
     @Test
-    public void removeFromCartTest() {
+    public void runRemoveFromCartTest() {
         webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);
