@@ -3,6 +3,8 @@ package ba.edu.ibu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -52,7 +54,7 @@ public class CommonMethods {
         webDriver.switchTo().window(switchTabs.get(1));
     }
     public static void acceptTicketsScreenCookies(WebDriver webDriver){
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(30));
         WebElement acceptCookies = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"onetrust-accept-btn-handler\"]"))
         );
@@ -120,4 +122,41 @@ public class CommonMethods {
 
         assertTrue(duplicateEmail.getText().contains("An account has already been created with this email address."));
     }
+
+    public static void runAddToCart(WebDriver webDriver) {
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+
+        //selecting first availiable GrandPrix
+        webDriver.findElement(By.xpath("//*[@id=\"calendar-content-wrapper\"]/div[2]/div/div[1]/div/div/div[2]/div/a")).click();
+        //selecting first availiable Stands
+        webDriver.findElement(By.xpath("//*[@id=\"event-content-wrapper\"]/div[3]/div/fieldset/div/div[1]/div/div/div/div[3]/a")).click();
+        //confirming addition to cart
+
+        WebElement addToCart = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By
+                                .xpath("//*[@id=\"grandstand-content-wrapper\"]" +
+                                        "/div[2]/div/fieldset/div/div[1]/div[2]/div[2]/div[2]/button"))
+        );
+
+        addToCart.click();
+
+        //checking footer cart state
+        WebElement bottomCart = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"grandstand-content-wrapper\"]/div[6]/div/div[2]/p[1]"))
+        );
+        assertEquals("1 Product",bottomCart.getText());
+
+        //checking header cart state
+        WebElement topCart = webDriver.findElement(By.xpath("//*[@id=\"primaryNav\"]/div/div[3]/ul/li[3]/a/div/div[1]"));
+        assertEquals("1",topCart.getText());
+    }
+
+    public static void hoverOverFirstGpCard(WebDriver webDriver){
+        Actions builder = new Actions(webDriver);
+        WebElement firstGpCard = webDriver.findElement(By.xpath("//*[@id=\"calendar-content-wrapper\"]/div[2]/div/div[1]"));
+        Action hoverOverFirstGpCard = builder.moveToElement(firstGpCard).build();
+        hoverOverFirstGpCard.perform();
+    }
+
+
 }
