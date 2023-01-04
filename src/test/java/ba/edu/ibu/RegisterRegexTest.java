@@ -37,7 +37,9 @@ public class RegisterRegexTest {
 
         CommonMethods.goToRegisterScreen(webDriver);
 
-        CommonMethods.inputAllFieldsExceptPasswordOnRegisterScreen(webDriver);
+        String tempEmail = CommonMethods.generateEmail();
+
+        CommonMethods.inputAllFieldsExceptPasswordOnRegisterScreen(webDriver, tempEmail);
 
         WebElement passwordField = webDriver.findElement(By.id("Password-input"));
         WebElement registerBtn = webDriver.findElement(By.xpath("//*[@id=\"registration-form\"]/div/div/div/div/div[2]/div[11]/div/div/div[1]/a"));
