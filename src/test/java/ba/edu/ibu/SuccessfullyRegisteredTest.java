@@ -24,7 +24,7 @@ public class SuccessfullyRegisteredTest {
     }
 
     @Test
-    public void successfullyRegisterTest() throws InterruptedException {
+    public void runSuccessfullyRegisterTest() throws InterruptedException {
         webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);
