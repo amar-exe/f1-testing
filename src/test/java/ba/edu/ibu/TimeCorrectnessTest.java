@@ -36,7 +36,7 @@ public class TimeCorrectnessTest {
 
     @Test
     void runTimeCorectnessTest(){
-        webDriver.get(Config.baseUrl);
+        webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);
         goToRaceSchedule();

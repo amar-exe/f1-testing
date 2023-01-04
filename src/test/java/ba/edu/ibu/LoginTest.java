@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTest {
     private static WebDriver webDriver;
-    private static String baseUrl;
 
     @BeforeAll
     static void setUp() {
@@ -26,7 +25,6 @@ public class LoginTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         webDriver = new ChromeDriver(options);
-        baseUrl = "https://formula1.com/";
     }
 
     @AfterAll
@@ -38,7 +36,7 @@ public class LoginTest {
     void successfulLoginTest() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
-        webDriver.get(baseUrl);
+        webDriver.get(Constants.baseUrl);
         goToLoginScreen();
 
         WebElement emailField = wait.until(

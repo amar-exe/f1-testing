@@ -28,7 +28,7 @@ public class RedNavigationTest {
 
     @Test
     void runRedNavigationTest(){
-        webDriver.get(Config.baseUrl);
+        webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);
 

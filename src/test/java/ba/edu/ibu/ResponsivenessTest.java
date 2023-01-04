@@ -35,7 +35,7 @@ public class ResponsivenessTest {
 
     @Test
     void runResponsivenessTest() throws InterruptedException {
-        webDriver.get(Config.baseUrl);
+        webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);
         //low definition tests

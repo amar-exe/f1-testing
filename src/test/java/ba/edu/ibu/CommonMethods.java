@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -43,7 +44,20 @@ public class CommonMethods {
         );
         assertEquals("CREATE ACCOUNT", registerHeader.getText());
     }
-
+    public static void goToTicketsScreen(WebDriver webDriver){
+        webDriver.findElement(By.xpath("//*[@id=\"globalNav\"]/div/div[2]/div[2]/ul/li[4]/a")).click();
+        ArrayList<String> switchTabs= new ArrayList<String> (webDriver.getWindowHandles());
+        webDriver.switchTo().window(switchTabs.get(0));
+        webDriver.close();
+        webDriver.switchTo().window(switchTabs.get(1));
+    }
+    public static void acceptTicketsScreenCookies(WebDriver webDriver){
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        WebElement acceptCookies = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"onetrust-accept-btn-handler\"]"))
+        );
+        acceptCookies.click();
+    }
     public static String generateEmail() {
         int numOfLetters = 12;
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
