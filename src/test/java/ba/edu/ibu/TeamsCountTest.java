@@ -29,7 +29,7 @@ public class TeamsCountTest {
     }
     @Test
     void runTeamsCountTest(){
-        webDriver.get(Config.baseUrl);
+        webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);
         navigateToTeamsPage();

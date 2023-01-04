@@ -31,7 +31,7 @@ public class RegisterRegexTest {
 
     @Test
     void runRegisterRegexTest() throws InterruptedException {
-        webDriver.get(Config.baseUrl);
+        webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);
 

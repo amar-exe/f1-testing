@@ -2,7 +2,7 @@ package ba.edu.ibu;
 
 public class Constants {
     final public static String errorColor = "#ee0000";
-    final public static String notErrorColor = "#67676d";
+    final public static String baseUrl="https://formula1.com";
     final public static int nrOfF1Teams = 10;
     final public static String testAccountEmail = "f1@inboxkitten.com";
     final public static String testAccountPass = "Test123!";
