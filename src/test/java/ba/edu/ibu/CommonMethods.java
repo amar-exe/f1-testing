@@ -85,7 +85,7 @@ public class CommonMethods {
         return (sb + "@inboxkitten.com");
     }
 
-    public static void inputAllFieldsExceptPasswordOnRegisterScreen(WebDriver webDriver) {
+    public static void inputAllFieldsExceptPasswordOnRegisterScreen(WebDriver webDriver, String tempEmail) {
         Select titleSelect = new Select(webDriver.findElement(By.id("Title-input")));
         titleSelect.selectByValue("Mr");
 
@@ -98,13 +98,13 @@ public class CommonMethods {
 
         Select countrySelect = new Select(webDriver.findElement(By.id("Country-input")));
         countrySelect.selectByValue("BIH");
-        webDriver.findElement(By.xpath("//*[@id=\"Email-input\"]")).sendKeys(CommonMethods.generateEmail());
+        webDriver.findElement(By.xpath("//*[@id=\"Email-input\"]")).sendKeys(tempEmail);
     }
 
-    public static void testAccountCreation(WebDriver webDriver) throws InterruptedException {
+    public static void testAccountCreation(WebDriver webDriver, String tempEmail) throws InterruptedException {
         WebElement passwordField = webDriver.findElement(By.id("Password-input"));
         WebElement registerBtn = webDriver.findElement(By.xpath("//*[@id=\"registration-form\"]/div/div/div/div/div[2]/div[11]/div/div/div[1]/a"));
-        CommonMethods.inputAllFieldsExceptPasswordOnRegisterScreen(webDriver);
+        CommonMethods.inputAllFieldsExceptPasswordOnRegisterScreen(webDriver, tempEmail);
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         //Confirm register works
         passwordField.clear();

@@ -31,7 +31,9 @@ public class SuccessfullyRegisteredTest {
 
         CommonMethods.goToRegisterScreen(webDriver);
 
-        CommonMethods.testAccountCreation(webDriver);
+        String tempEmail = CommonMethods.generateEmail();
+
+        CommonMethods.testAccountCreation(webDriver, tempEmail);
     }
 
 

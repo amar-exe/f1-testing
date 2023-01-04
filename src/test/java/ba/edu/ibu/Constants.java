@@ -3,6 +3,8 @@ package ba.edu.ibu;
 public class Constants {
     final public static String errorColor = "#ee0000";
     final public static String baseUrl="https://formula1.com";
+    final public static String inboxKitten = "https://inboxkitten.com/";
+    final public static String verificationSuccessLink = "https://account.formula1.com/#/en/verification-success";
     final public static int nrOfF1Teams = 10;
     final public static String testAccountEmail = "f1@inboxkitten.com";
     final public static String testAccountPass = "Test123!";
