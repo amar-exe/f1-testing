@@ -32,17 +32,17 @@ public class TeamsCountTest {
         webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);
-        navigateToTeamsPage();
+        navigateToTeamsPage(webDriver);
 
-        assertEquals(Constants.nrOfF1Teams,findNumberOfTeams());
+        assertEquals(Constants.nrOfF1Teams,findNumberOfTeams(webDriver));
 
     }
 
-    private void navigateToTeamsPage(){
+    public static void navigateToTeamsPage(WebDriver webDriver) {
         webDriver.findElement(By.xpath("//*[@id=\"primaryNav\"]/div/div[2]/ul/li[6]/a")).click();
     }
    
-    private int findNumberOfTeams(){
+    public static int findNumberOfTeams(WebDriver webDriver){
         List<WebElement> teams = webDriver.findElements(By.className("listing-link"));
         return teams.size();
     }

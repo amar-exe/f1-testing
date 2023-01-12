@@ -59,7 +59,7 @@ public class CommonMethods {
     }
     public static void removeTempFile(){
         File file = new File(
-                Config.path+"f1-testing\\loginTest\\output.txt");
+                "C:\\Users\\Amar\\Desktop\\Folders\\School\\V Semester\\System Verification, Validaiton and Testing\\Labs-GitHub\\f1-testing\\Formula1-Testing\\loginTest\\output.txt");
         file.delete();
     }
     public static void clipboardFix(){

@@ -54,13 +54,13 @@ public class RegisterRegexTest {
 
     }
 
-    private boolean checkIfRed(WebElement webElement) {
+    public static boolean checkIfRed(WebElement webElement) {
         String currentColorMinLowercase = webElement.getCssValue("color");
         String color = Color.fromString(currentColorMinLowercase).asHex();
         return color.equals(Constants.errorColor);
     }
 
-    private boolean checkIfRed(WebElement[] webElements) {
+    public static boolean checkIfRed(WebElement[] webElements) {
         for (WebElement element: webElements) {
             if(!checkIfRed(element)) {
                 return false;
@@ -69,7 +69,7 @@ public class RegisterRegexTest {
         return true;
     }
 
-    private void testPasswordField(WebElement minUppercase,
+    public static void testPasswordField(WebElement minUppercase,
                                    WebElement minLowercase, WebElement minNumber,
                                    WebElement min8Char, WebElement minSpecial,
                                    WebElement passwordField, WebElement registerBtn) {
