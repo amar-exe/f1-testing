@@ -56,7 +56,7 @@ public class VerifyAccountTest {
         checkVerificationSuccess(webDriver);
     }
 
-    public void checkVerificationSuccess(WebDriver webDriver) throws InterruptedException {
+    public static void checkVerificationSuccess(WebDriver webDriver) throws InterruptedException {
         Thread.sleep(7000);
 
         ArrayList<String> switchTabs= new ArrayList<String> (webDriver.getWindowHandles());
@@ -65,7 +65,7 @@ public class VerifyAccountTest {
         assertEquals(Constants.verificationSuccessLink, webDriver.getCurrentUrl());
     }
 
-    public void clickOnVerifyLink(WebDriver webDriver) {
+    public static void clickOnVerifyLink(WebDriver webDriver) {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
         WebElement messageContent = wait.until(
@@ -86,7 +86,7 @@ public class VerifyAccountTest {
         linkElement.click();
     }
 
-    public void clickOnVerificationEmail(WebDriver webDriver) throws InterruptedException {
+    public static void clickOnVerificationEmail(WebDriver webDriver) throws InterruptedException {
         Boolean isPresent = false;
 
 
@@ -113,7 +113,7 @@ public class VerifyAccountTest {
 
     }
 
-    public void goToInboxKitten(WebDriver webDriver) throws InterruptedException {
+    public static void goToInboxKitten(WebDriver webDriver) throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("window.open('" + Constants.inboxKitten + "','_blank');");
         ArrayList<String> switchTabs= new ArrayList<String> (webDriver.getWindowHandles());
@@ -121,7 +121,7 @@ public class VerifyAccountTest {
         Thread.sleep(10000);
     }
 
-    public void changeEmailOnInboxKitten(WebDriver webDriver, String tempEmail) {
+    public static void changeEmailOnInboxKitten(WebDriver webDriver, String tempEmail) {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(20));
 
         WebElement emailField = wait.until(

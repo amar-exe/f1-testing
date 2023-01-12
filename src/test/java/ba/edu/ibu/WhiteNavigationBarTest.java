@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WhiteNavigationBarTest {
     private static WebDriver webDriver;
-    int linkParser = 0;
+    static int linkParser = 0;
 
     @BeforeAll
     static void setUp() {
@@ -35,13 +35,13 @@ public class WhiteNavigationBarTest {
 
         CommonMethods.acceptMarketingCookies(webDriver);
 
-        checkFiaLink();
-        checkFormulaLeaguesLinks();
-        checkStoresLinks();
+        checkFiaLink(webDriver);
+        checkFormulaLeaguesLinks(webDriver);
+        checkStoresLinks(webDriver);
 
     }
 
-    public void checkStoresLinks() {
+    public static void checkStoresLinks(WebDriver webDriver) {
         //Stores and shops
         for(int elementNr = 2; elementNr < 7; elementNr++) {
             WebElement webElement = webDriver
@@ -55,7 +55,7 @@ public class WhiteNavigationBarTest {
         }
     }
 
-    public void checkFiaLink() {
+    public static void checkFiaLink(WebDriver webDriver) {
         //FIA
         WebElement fiaWebsite = webDriver
                 .findElement(By
@@ -66,7 +66,7 @@ public class WhiteNavigationBarTest {
         linkParser++;
     }
 
-    public void checkFormulaLeaguesLinks() {
+    public static void checkFormulaLeaguesLinks(WebDriver webDriver) {
         // F1 F2 F3
         //TODO F2 and F3 websites is https secure but the transfer link is http
         for(int elementNr = 1; elementNr < 4; elementNr++) {
