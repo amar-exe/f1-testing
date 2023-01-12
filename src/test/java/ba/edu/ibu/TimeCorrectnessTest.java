@@ -35,15 +35,15 @@ public class TimeCorrectnessTest {
     }
 
     @Test
-    void runTimeCorectnessTest(){
+    void runTimeCorrectnessTest(){
         webDriver.get(Constants.baseUrl);
 
         CommonMethods.acceptMarketingCookies(webDriver);
-        goToRaceSchedule();
-        checkSakhirTime();
-        checkLocalTime();
+        goToRaceSchedule(webDriver);
+        checkSakhirTime(webDriver);
+        checkLocalTime(webDriver);
     }
-    private void checkLocalTime(){
+    public static void checkLocalTime(WebDriver webDriver){
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
         WebElement websiteLocal= wait.until(
@@ -54,12 +54,12 @@ public class TimeCorrectnessTest {
         String correctLocalTime=getLocalTime();
         assertEquals(correctLocalTime,websiteLocalTime);
     }
-    private String getLocalTime(){
+    public static String getLocalTime(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
         LocalDateTime now = LocalDateTime.now();
         return(dtf.format(now));
     }
-    private void checkSakhirTime(){
+    public static void checkSakhirTime(WebDriver webDriver){
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
         WebElement websiteSakhir = wait.until(
@@ -70,7 +70,7 @@ public class TimeCorrectnessTest {
         String correctSakhirTime=ApiGetter.getCurrentTimeInSakhir();
         assertEquals(correctSakhirTime,websiteSakhirTime);
     }
-    public void goToRaceSchedule() {
+    public static void goToRaceSchedule(WebDriver webDriver) {
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("window.scrollTo(0,3500)");
     }
