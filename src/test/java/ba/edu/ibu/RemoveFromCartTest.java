@@ -43,11 +43,11 @@ public class RemoveFromCartTest {
 
         CommonMethods.runAddToCart(webDriver);
 
-        removeFromCart();
+        removeFromCart(webDriver);
 
     }
 
-    private void removeFromCart() {
+    public static void removeFromCart(WebDriver webDriver) {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
 
         //Click checkout button

@@ -32,11 +32,11 @@ public class DriverStatsTest {
     public void testDriverStandings() throws InterruptedException {
         webDriver.get(Constants.baseUrl);
         CommonMethods.acceptMarketingCookies(webDriver);
-        goToViewStandingsButton();
-        checkDriverStats();
+        goToViewStandingsButton(webDriver);
+        checkDriverStats(webDriver);
     }
 
-    public void checkDriverStats() {
+    public static void checkDriverStats(WebDriver webDriver) {
         DriverModel driverModel = ApiGetter.getDrivers2022();
 
         for(int i = 1; i < 23; i++) {
@@ -78,7 +78,7 @@ public class DriverStatsTest {
             }
 
             //Comparing surname
-            //TODO API returns Pérez but the website says Perez but Pérez is correct
+            //TODO API returns Pérez and the website says Perez but Pérez is correct
             assertEquals(driverStandings.Driver.familyName,
                     currentDriverSurname.getText());
 
@@ -90,7 +90,7 @@ public class DriverStatsTest {
         }
     }
 
-    public void goToViewStandingsButton() throws InterruptedException {
+    public static void goToViewStandingsButton(WebDriver webDriver) throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         WebElement viewFullStandingsBtn = webDriver
                 .findElement(
